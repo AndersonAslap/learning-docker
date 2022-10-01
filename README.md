@@ -167,3 +167,15 @@ docker volume inspect $VOLUME_NAME
 ]
 ```
 
+- Comando para inspecionar o volume
+
+```bash
+docker run --name $CONTAINER_NAME -d --mount type=volume,source=$VOLUME_NAME,target=/app nginx
+```
+
+- Os volumes podem serem compartilhados com n containers.
+
+```bash
+docker volume prune
+```
+- O comando acima mata os volumnes que não estão sendo usados.

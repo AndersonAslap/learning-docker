@@ -98,3 +98,72 @@ docker rm $CONTAINER_NAME -f
 ```
 
 - Se o container estiver em execução, para remover ou você para o container e remove ou você força a remoção adicionando o -f no fim do comando.
+
+```bash
+docker run -d --name $NAME $CONTAINER_NAME
+```
+- --name este comando serve para dar-mos um nome ao nosso container.
+
+```bash 
+docker exec $CONTAINER_NAME ls
+```
+
+- o comando [ exec ] ele é ultilizado para executar comando em um container em execução.
+
+
+```bash 
+docker exec -it $CONTAINER_NAME bash 
+```
+
+- Com o comando acima entramos de forma interativa no bash do container.
+
+> O container ele é imutável, existe uma camada de escrita e leitura porém se o processo do container for finalizado essas informações serão perdidas.
+
+```bash 
+docker run -d --name nginx -p 8080:80 -v /home/cmtech/Área\ de\ Trabalho/html/:/usr/share/nginx/html nginx
+```
+
+```bash 
+docker run -d --name nginx -p 8080:80 --mount type=bind,source=/home/cmtech/Área\ de\ Trabalho/html/,target=/usr/share/nginx/html nginx
+```
+
+- -v O comando cria um volume esse comando -v ele é antigo, hoje em dia ultilizamos o [ --mount type=bind,source=/home/cmtech/Área\ de\ Trabalho/html/,target=/usr/share/nginx/html ], adicionamos uma pasta local para dentro de uma pasta do container isso é um conceito de (bind mounts) se finalizermos o container você não perde a pasta que está local.
+
+> Diferença entre -v e --mount
+
+- Quando ultilizamos o -v se a pasta que você colocou não existe essa pasta será criada com o comando --mount dá erro, porque ele valida se a pasta existe ou não.
+
+> Volumes no docker
+
+```bash
+docker volume
+
+create Criar volume 
+inspect Inspecionar volumes 
+ls Listar volumes 
+prune Remover conteúdo do volume 
+rm Remover um ou vários volumes
+```
+
+```bash
+docker volume create $VOLUME_NAME
+```
+
+- Comando para criar um volume
+
+```bash 
+docker volume inspect $VOLUME_NAME
+
+[
+    {
+        "CreatedAt": "2022-10-01T12:41:09-03:00",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/meuVolume/_data",
+        "Name": "meuVolume",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+```
+

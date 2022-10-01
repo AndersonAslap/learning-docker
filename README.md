@@ -115,7 +115,7 @@ docker run -d --name $NAME $CONTAINER_NAME
 docker exec $CONTAINER_NAME ls
 ```
 
-- Com o comando acima entramos de forma interativa no bash do container.
+- Com o comando abaixo entramos de forma interativa no bash do container.
 
 
 ```bash 
@@ -183,7 +183,7 @@ docker volume inspect $VOLUME_NAME
 docker run --name $CONTAINER_NAME -d --mount type=volume,source=$VOLUME_NAME,target=/app nginx
 ```
 
-- O comando acima mata os volumnes que não estão sendo usados.
+- O comando abaico mata os volumnes que não estão sendo usados.
 
 
 ```bash

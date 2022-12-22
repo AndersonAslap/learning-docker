@@ -183,9 +183,119 @@ docker volume inspect $VOLUME_NAME
 docker run --name $CONTAINER_NAME -d --mount type=volume,source=$VOLUME_NAME,target=/app nginx
 ```
 
-- O comando abaico mata os volumnes que não estão sendo usados.
+- O comando abaixo mata os volumes que não estão sendo usados.
 
 
 ```bash
 docker volume prune
+```
+
+> Images
+
+- Listar Image
+
+```bash
+docker images
+```
+
+- Remover Image
+
+```bash
+docker rmi $image:$tag
+```
+
+- Criar Image 
+
+```bash
+docker build -t $name_image:$tag $path_docker_file
+```
+
+- Publicar Images (Tem que está logado)
+
+```bash
+docker push $image_name
+```
+
+- Listar containers ativos e inativos 
+
+```bash
+docker ps -a
+```
+
+- Listar os ids dos containers ativos e inativos 
+
+```bash
+docker ps -a -q
+```
+
+- Remover todos os containers
+
+```bash
+docker rm $(docker ps -a -q) -f
+```
+
+> Networks
+
+- Bridge : Um container se comunicar facilmente com outro container
+
+- Host : Mescla a network do docker com a network do computador
+
+- Overlay : Comunicação entre vários dockers em máquinas diferentes 
+
+- maclan 
+
+- none : nenhuma rede
+
+> Criando uma rede 
+
+```bash
+docker network create --driver bridge $name_network
+```
+
+> Conectando um container em uma rede 
+
+```bash
+docker network connect $name_network $name_container
+```
+
+> Buildar dockerfile Prod
+
+```bash
+docker build -t $repo/$name_image . -f Dockerfile.prod
+```
+
+> Docker compose 
+
+- O docker-compose é uma ferramenta complementar ao docker que baseado em um arquivo 
+(yml) ele consegue pegar todos os containers que você quer subir e sobe tudo de uma vez de forma 
+automática.
+
+- Listar os containers 
+
+```bash
+docker compose ps
+```
+
+- Startar os containers 
+
+```bash
+docker compose up
+```
+
+- Derrubar os containers 
+
+```bash
+docker compose down
+```
+
+- Rebuildar as imagens e subir os containers
+
+```bash
+docker compose up --build
+```
+
+- Ditatch Terminal
+
+```bash
+docker compose up -d
 ```
